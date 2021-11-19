@@ -1,10 +1,12 @@
-const app = require('./app');
+/* eslint-disable no-console */
+import { listen } from './app';
 
+// eslint-disable-next-line no-use-before-define
 init();
 
 async function init() {
   try {
-    app.listen(3001, () => {
+    listen(3001, () => {
       console.log('Express App Listening on Port 3001');
     });
   } catch (error) {
