@@ -1,33 +1,32 @@
-/* eslint-disable max-classes-per-file */
-import Sequelize, {
-  Model, STRING, DECIMAL, ENUM, TEXT, BOOLEAN, DATE,
-} from 'sequelize';
+/* eslint-disable no-undef */
+// eslint-disable-next-line max-classes-per-file
+const Sequelize = require('sequelize');
 
 const sequelize = new Sequelize({
   dialect: 'sqlite',
   storage: './database.sqlite3',
 });
 
-class Profile extends Model {}
+class Profile extends Sequelize.Model {}
 Profile.init(
   {
     firstName: {
-      type: STRING,
+      type: Sequelize.STRING,
       allowNull: false,
     },
     lastName: {
-      type: STRING,
+      type: Sequelize.STRING,
       allowNull: false,
     },
     profession: {
-      type: STRING,
+      type: Sequelize.STRING,
       allowNull: false,
     },
     balance: {
-      type: DECIMAL(12, 2),
+      type: Sequelize.DECIMAL(12, 2),
     },
     type: {
-      type: ENUM('client', 'contractor'),
+      type: Sequelize.ENUM('client', 'contractor'),
     },
   },
   {
@@ -36,15 +35,15 @@ Profile.init(
   },
 );
 
-class Contract extends Model {}
+class Contract extends Sequelize.Model {}
 Contract.init(
   {
     terms: {
-      type: TEXT,
+      type: Sequelize.TEXT,
       allowNull: false,
     },
     status: {
-      type: ENUM('new', 'in_progress', 'terminated'),
+      type: Sequelize.ENUM('new', 'in_progress', 'terminated'),
     },
   },
   {
@@ -53,23 +52,23 @@ Contract.init(
   },
 );
 
-class Job extends Model {}
+class Job extends Sequelize.Model {}
 Job.init(
   {
     description: {
-      type: TEXT,
+      type: Sequelize.TEXT,
       allowNull: false,
     },
     price: {
-      type: DECIMAL(12, 2),
+      type: Sequelize.DECIMAL(12, 2),
       allowNull: false,
     },
     paid: {
-      type: BOOLEAN,
+      type: Sequelize.BOOLEAN,
       default: false,
     },
     paymentDate: {
-      type: DATE,
+      type: Sequelize.DATE,
     },
   },
   {
@@ -85,7 +84,7 @@ Contract.belongsTo(Profile, { as: 'Client' });
 Contract.hasMany(Job);
 Job.belongsTo(Contract);
 
-export default {
+module.exports = {
   sequelize,
   Profile,
   Contract,
