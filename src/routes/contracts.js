@@ -4,9 +4,7 @@ const contractsController = require('../controllers/contractsController');
 
 const router = express.Router();
 
-router.get('/', getProfile, async (req, res) => {
-  res.send('Contract Route Working');
-});
+router.get('/', getProfile, async (req, res) => contractsController.getAllContractsForProfileId(req, res));
 
 router.get('/:id', getProfile, async (req, res) => contractsController.getContractById(req, res));
 

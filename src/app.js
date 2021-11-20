@@ -13,7 +13,7 @@ app.set('models', sequelize.models);
 app.use(getProfile);
 
 app.get('/', async (req, res) => {
-  res.send('Deel Assignment Server Up');
+  res.send('Server Running');
 });
 app.use('/contracts', contractsRouter);
 
