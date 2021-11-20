@@ -8,6 +8,13 @@ app.use(bodyParser.json());
 app.set('sequelize', sequelize);
 app.set('models', sequelize.models);
 
+// Added Middleware for Authenticating all Requests
+app.use(getProfile);
+
+app.get('/', async (req, res) => {
+  res.send('Deel Assignment Server Up');
+});
+
 /**
  * FIX ME!
  * @returns contract by id
